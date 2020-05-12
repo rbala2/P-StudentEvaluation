@@ -1,0 +1,531 @@
+<div class="innerpage">
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>about-us</title> 
+    <link rel="shortcut icon" href="../assets/images/fav.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/css/assets/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../assets/css/assets/font-awesome.min.css">
+    <!-- Popup -->
+    <link href="../assets/css/assets/magnific-popup.css" rel="stylesheet"> 
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="../assets/css/assets/revolution/layers.css">
+    <link rel="stylesheet" href="../assets/css/assets/revolution/navigation.css">
+    <link rel="stylesheet" href="../assets/css/assets/revolution/settings.css">   
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700%7COpen+Sans:400,600" rel="stylesheet">     
+    <!-- Slick Slider -->
+    <link href="../assets/css/assets/slick.css" rel="stylesheet">     
+    <link href="../assets/css/assets/slick-theme.css" rel="stylesheet">   
+    <!-- Mean Menu-->
+    <link rel="stylesheet" href="../assets/css/assets/meanmenu.css">   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+	
+	</head>
+<body>
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<header id="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 header-top-left">
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone top-icon"></i> +919666829555</li>
+                        <li><i class="fa fa-envelope top-icon"></i> info@cpecollege.com</li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-xs-12 header-top-right">
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.facebook.com/CPE-350947881974789" target="_blank"><i class="fa fa-facebook top-icon"></i></a></li>
+                        <li><a href="ca"><i class="fa fa-twitter top-icon"></i></a></li>
+                        <li><a href="ca"><i class="fa fa-linkedin top-icon"></i></a></li>
+                        <li><a href="ca"><i class="fa fa-google-plus top-icon"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- Ends: .header-top -->
+
+    <div class="header-body">
+        <nav class="navbar edu-navbar" style="height:85px;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" onclick="openNav()">
+                        <i class="fa fa-bars mobile_nav"></i>
+                    </button>
+                    <a href="index.php" class="navbar-brand  data-scroll"><img src="../assets/images/logo.png" alt="" class="img-responsive"></a>
+                </div>
+
+                <div class="collapse navbar-collapse edu-nav main-menu" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav pull-right" style="margin-top: 12px;">
+                        <li ><a href="../index.html">Home</a></li>
+                        <li ><a href="../about-us">About Us</a></li>
+                        <li ><a href="ca#">Courses</a>
+                            <!-- dropdwon start -->
+                            <ul class="dropdown list-unstyled">
+                                                                    <li><a href="mec">MEC</a></li>
+                                                                        <li><a href="ca">CA</a></li>
+                                                                        <li><a href="cma">CMA</a></li>
+                                                                </ul>
+                            <!-- dropdown end -->
+                        </li>
+                        <li ><a href="../faculty">Faculty </a></li>
+                        <li ><a href="../facilities">Facilities </a></li>
+                        <li><a href="http://www.cpecollege.com/assets/uploads/magazine/1564721305_2019_-_2020_-_Insentive_v2_(1).pdf" target="_blank">cpe magazine </a></li>
+                        <li ><a href="../alumni">Alumni </a></li>
+                        <li ><a href="../gallery">Gallery</a></li>
+                        <li ><a href="../contact">Contact Us</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+
+            <div id="mySidenav" class="sidenav">
+
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+              <li><a href="../index.html"> Home</a></li>
+
+                <li><a href="../about-us"> About Us</a></li>
+                <li class=""><a data-toggle="collapse" href="ca#demo"><i class="icon-settings"></i> Courses <i class="fa fa-angle-down droup-arrow"></i></a>
+                <ul id="demo" class="collapse">
+                                            <li><a href="mec">MEC</a></li>
+                                                <li><a href="ca">CA</a></li>
+                                                <li><a href="cma">CMA</a></li>
+                                        </ul>
+                <!-- dropdown end -->
+            </li>
+            <li><a href="../faculty">Faculty </a></li>
+            <li><a href="../facilities">Facilities </a></li>
+            <li><a href="http://www.cpecollege.com/assets/uploads/magazine/1564721305_2019_-_2020_-_Insentive_v2_(1).pdf">cpe magazine </a></li>
+            <li><a href="../alumni">Alumni </a></li>
+            <li><a href="../gallery">Gallery</a></li>
+            <li><a href="../contact">Contact Us</a></li>
+          </div>
+        </nav>
+    </div>          <div class="container subbanner-text">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="intro-text ">
+                        &nbsp;
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+</div>
+    </div><!-- END SLIDER CONTAINER WRAPPER -->
+</header>
+    <!--  End header section-->
+
+
+<div class="single-courses-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 sidebar-left">
+                <div class="single-curses-contert gallery-area" style="padding:0px;"> 
+                    <h2>CA Course after Class XIIth / Intermediate</h2>
+
+<h3>Steps to become a CA Image</h3>
+
+<p><img alt="" src="../assets/images/Single_cources/inter.jpg" /></p>
+
+<ul>
+	<li>&nbsp;</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2>CA Course after Graduation through Direct Entry Scheme</h2>
+
+<p><strong>CA Course after Graduation</strong> avail the benefit of CA Foundation Exam Exemption. Students joining the CA Course after successfully clearing Graduation with the specified percentage of marks are exempted from appearing for CA Foundation Exam and can directly start their articleship and appear for CA Inter Exams.</p>
+
+<p><br />
+<br />
+<img alt="" src="../assets/images/Single_cources/inter_1.jpg" /></p>
+
+<ul>
+	<li>&nbsp;</li>
+</ul>
+
+<p>&nbsp;</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+    </div>  
+</div>
+
+<!-- Footer Area section -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class=" col-sm-12 footer-content-box">
+
+                <div class="col-sm-3">
+
+                    <h3>About Us</h3>
+
+                    <p><p>We are Educatios, creat your passion and inspiration. And hope success will come for your dream. Please send email and get latest news.</p>
+</p>
+
+                    <ul class="list-unstyled">
+
+                        <li><span><i class="fa fa-phone footer-icon"></i></span>+919666829555</li>
+
+                        <li><span><i class="fa fa-envelope footer-icon"></i></span>info@cpecollege.com</li>
+
+                        <li><span><i class="fa fa-map-marker footer-icon"></i></span><p>GVMC Side Road, Ram Nagar,<br />
+Near RTC Complex, Visakhapatnam</p>
+</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="col-sm-2">
+
+                    <h3>Courses</h3>
+
+                    <ul class="list-unstyled">
+
+                    
+                        <li><a href="mec"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>MEC</a></li>
+
+                            
+                        <li><a href="ca"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>CA</a></li>
+
+                            
+                        <li><a href="cma"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>CMA</a></li>
+
+                            
+                    </ul>
+
+                </div>
+
+
+
+                <div class="col-sm-2">
+
+                    <h3>Links</h3>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="../about-us"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>About Us</a></li>
+
+                        <li><a href="ca#"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Courses</a></li>
+
+                        <li><a href="ca#"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Academic</a></li>
+
+                        <li><a href="../facilities"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Facilities</a></li>
+
+                        <li><a href="ca#"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Activities</a></li>
+
+                        <li><a href="../gallery"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Gallery</a></li>
+
+                        <li><a href="../contact"><span><i class="fa fa-long-arrow-right footer-icon"></i></span>Contact Us</a></li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="col-sm-5">
+
+                    <h3>Location</h3>
+
+                    
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.474122190365!2d83.30761021435771!3d17.722285697725653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39433e0ca6e1e3%3A0x3561526353bbf5e6!2sC.P.E+Junior+College!5e0!3m2!1sen!2sin!4v1541232723334" width="100%" height="220" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                    
+
+                </div>  
+
+
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <div class="footer-bottom-inner">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-12 footer-no-padding">
+
+                        <p>&copy; Copyright 2018 CPE College | All rights reserved</p>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 footer-no-padding">
+
+                        <ul class="list-unstyled footer-menu text-right">
+
+                            <li>Follow us:</li>
+
+                            <li><a href="https://www.facebook.com/CPE-350947881974789" target="_blank"><i class="fa fa-facebook facebook"></i></a></li>
+
+                            <li><a href="ca"><i class="fa fa-twitter twitter"></i></a></li>
+
+                            <li><a href="ca"><i class="fa fa-linkedin instagram"></i></a></li>
+
+                            <li><a href="ca"><i class="fa fa-google-plus google"></i></a></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- ./ End footer-bottom -->     
+
+</footer><!-- ./ End Footer Area-->
+
+
+
+<div class="callback noslide">
+
+    <a href="javascript:;" class="callbkBtn" title="Get a Call Back"></a>
+
+    <div class="callbackBox">
+
+        <div class="top"></div>
+
+        <div class="mid">
+
+            <div class="ud_prevBtn disable" style="background:rgba(0, 0, 0, 0) url(http://www.cpecollege.com/assets/images/uparrow.png) no-repeat scroll 0 0;"></div>
+
+                <ul class="callbackList">
+
+                    <li style="background:rgba(0, 0, 0, 0) url('http://www.cpecollege.com/assets/images/facebook.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="https://www.facebook.com/CPE-350947881974789" target="_blank">Facebook</a>
+
+                    </li>
+
+                    <!-- <li style="background:rgba(0, 0, 0, 0) url('images/index/twitter.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="#" >twitter</a>
+
+                    </li> -->
+
+                    <li style="background:rgba(0, 0, 0, 0) url('http://www.cpecollege.com/assets/images/youtube.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="ca" >Youtube</a>
+
+                    </li>
+
+                    <li style="background:rgba(0, 0, 0, 0) url('http://www.cpecollege.com/assets/images/instagram.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="ca" >Instagram</a>
+
+                    </li>
+
+                    <!-- <li style="background:rgba(0, 0, 0, 0) url('images/index/time_table.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="#" >Exam Time Tables</a>
+
+                    </li>
+
+                    <li style="background:rgba(0, 0, 0, 0) url('images/index/results.png') no-repeat scroll 0 0; background-position:5px;  height:47px;">
+
+                        <a href="#" >Results</a>
+
+                    </li> -->
+
+                </ul>
+
+                       <div class="ud_nextBtn" style="background:rgba(0, 0, 0, 0) url('https://christuniversity.in/images/downarrow.png') no-repeat scroll 0 0;"></div>                            </div>
+
+        <div class="boto"></div>
+
+    </div>
+
+</div>
+
+
+
+    <!-- ============================
+
+    JavaScript Files
+
+    ============================= -->
+
+    <!-- jQuery -->
+
+    <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.easy-ticker.js"></script>
+
+            <script type="text/javascript">
+        $(document).ready(function(){
+        var dd = $('.vticker').easyTicker({
+            direction: 'up',
+            easing: 'easeInOutBack',
+            speed: 'slow',
+            interval: 3000,
+            height: '400',
+            visible: 3,
+            mousePause: 0,
+            controls: {
+            up: '.up',
+            down: '.down',
+            toggle: '.toggle',
+            stopText: 'Stop !!!'
+            }
+            }).data('easyTicker');
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#onload').modal('show');
+        });
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="../assets/js/assets/bootstrap.min.js"></script>
+
+     <!-- owl carousel -->
+
+    <script src="../assets/js/assets/owl.carousel.min.js"></script>
+
+    <!-- Revolution Slider -->
+
+    <script src="../assets/js/assets/revolution/jquery.themepunch.revolution.min.js"></script>
+
+    <script src="../assets/js/assets/revolution/jquery.themepunch.tools.min.js"></script>   
+
+    <!-- Popup -->
+
+    <script src="../assets/js/assets/jquery.magnific-popup.min.js"></script>
+
+    <!-- Sticky JS -->
+
+    <script src="../assets/js/assets/jquery.sticky.js"></script>
+
+    <!-- Counter Up -->
+
+    <script src="../assets/js/assets/jquery.counterup.min.js"></script>
+
+    <script src="../assets/js/assets/waypoints.min.js"></script>
+
+   <!-- Slick Slider-->
+
+    <script src="../assets/js/assets/slick.min.js"></script>
+
+    <!-- Main Menu -->
+
+    <script src="../assets/js/assets/jquery.meanmenu.min.js"></script>
+
+    <!-- Revolution Extensions -->
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.actions.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.carousel.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.kenburn.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.layeranimation.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.migration.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.navigation.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.parallax.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.slideanims.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/extensions/revolution.extension.video.min.js"></script>
+
+    <script type="text/javascript" src="../assets/js/assets/revolution/revolution.js"></script>
+
+    <!-- Custom JS -->
+
+    <script src="../assets/js/custom.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+
+
+    <script>
+
+
+
+    function openNav() {
+
+
+
+        document.getElementById("mySidenav").style.width = "300px";
+
+
+
+        }
+
+
+
+     function closeNav() {
+
+
+
+         document.getElementById("mySidenav").style.width = "0";
+
+
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>    
+<script type="text/javascript">
+    var url = "http://www.cpecollege.com/admin/assets/uploads/slider/1565876343_banner-bg.jpg";
+    $(document).ready(function($) {
+        console.log("Load..");
+        $(".innerpage header .header-body").css("background",'url('+url+') no-repeat center center');
+    });
+</script>
