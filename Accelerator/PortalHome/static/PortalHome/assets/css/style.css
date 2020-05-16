@@ -1,14 +1,10 @@
+body {
 
+    font-family: "Open Sans", sans-serif;
 
-	
+    overflow-x: hidden;
 
-	body {
-
-	    font-family: "Open Sans", sans-serif;
-
-	    overflow-x: hidden;
-
-	}
+}
 
 	p {
 
@@ -134,7 +130,7 @@
 
 	/* -------- Pre Loader -------- */
 
-	
+
 
 	#preloader {
 
@@ -206,7 +202,7 @@
 
 	/*=======[ Index Search Style ]========*/
 
-	
+
 
 	#search {
 
@@ -326,7 +322,7 @@
 
 ===================================================*/
 
-	
+
 
 	header {
 
@@ -844,11 +840,11 @@
 
 	}
 
-	
 
-	header .header-body .is-sticky .edu-navbar .edu-nav .nav li.active a:before, 
 
-	header .header-body .is-sticky .edu-navbar .edu-nav .nav li:hover a::before, 
+	header .header-body .is-sticky .edu-navbar .edu-nav .nav li.active a:before,
+
+	header .header-body .is-sticky .edu-navbar .edu-nav .nav li:hover a::before,
 
 	header .header-body .is-sticky .edu-navbar .edu-nav .nav li:focus a::before {
 
@@ -862,7 +858,7 @@
 
 	}
 
-	
+
 
 	header .rev_slider_wrapper {
 
@@ -1017,18 +1013,18 @@
 	    transition: all 0.3s ease-in-out;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
 .tparrows.tp-leftarrow::before {
 
 	    content: "";
@@ -1087,7 +1083,7 @@
 
 	/*=======[ Index Rev Slider Content Style ]========*/
 
-	
+
 
 	.slider-content-bottom {
 
@@ -1267,7 +1263,7 @@
 
 	/*=======[ Index Wellcome Area Style ]========*/
 
-	
+
 
 	.Welcome-area {
 
@@ -1351,7 +1347,7 @@
 
 	/*=======[ Index Courses Area Style ]========*/
 
-	
+
 
 	.Courses-area {
 
@@ -1656,7 +1652,7 @@
 
 	/*=======[ Indec Video Section Style ]========*/
 
-	
+
 
 	.video-main-area {
 
@@ -1718,7 +1714,7 @@
 
 	/*=======[ Index Up Comming Events ]========*/
 
-	
+
 
 	.events-area {
 
@@ -1846,7 +1842,7 @@
 
 	/*=======[ Index Counter Area Style ]========*/
 
-	
+
 
 	.counter-area {
 
@@ -2014,7 +2010,7 @@
 
 	/*=======[ Index Publication Area Style ]========*/
 
-	
+
 
 	.publication-area {
 
@@ -2122,7 +2118,7 @@
 
 	/*=======[Index News Area Style ]========*/
 
-	
+
 
 	.news-area {
 
@@ -2324,7 +2320,7 @@
 
 	/*=======[Index Students Say Area Style ]========*/
 
-	
+
 
 	.students-say-area {
 
@@ -2474,11 +2470,11 @@
 
 	/*=======[Index Instraction Area Style ]========*/
 
-	
+
 
 	.instraction-area {
 
-	  
+
 
 	    position: relative;
 
@@ -2578,7 +2574,7 @@
 
 	/*=======[Index Footer Area Style ]========*/
 
-	
+
 
 	footer {
 
@@ -2842,7 +2838,7 @@
 
 =====================================================================================================*/
 
-	
+
 
 	.home_version_02 {
 
@@ -4194,7 +4190,7 @@
 
 ================================================================================================================*/
 
-	
+
 
 	.home_version_03 {
 
@@ -5866,7 +5862,7 @@ width: 100%;
 
 =====================================================================================================*/
 
-	
+
 
 	.home_version_04 {
 
@@ -7506,7 +7502,7 @@ width: 100%;
 
 =====================================================================================================*/
 
-	
+
 
 	.single-courses_v {
 
@@ -9498,7 +9494,7 @@ font-size: 18px;
 
 =====================================================================================================*/
 
-	
+
 
 	.courses {
 
@@ -10750,7 +10746,7 @@ font-size: 18px;
 
 =====================================================================================================*/
 
-	
+
 
 	.blog_1 header .header-body {
 
@@ -11620,7 +11616,7 @@ font-size: 18px;
 
 =====================================================================================================*/
 
-	
+
 
 	.post-1 header .header-body {
 
@@ -12816,7 +12812,7 @@ font-size: 18px;
 
 =====================================================================================================*/
 
-	
+
 
 	.teachers-01 header .header-body {
 
@@ -13227,7 +13223,7 @@ padding: 10px;
 
 =====================================================================================================*/
 
-	
+
 
 	.t-profile-01 header .header-body {
 
@@ -13959,7 +13955,7 @@ padding: 10px;
 
 =====================================================================================================*/
 
-	
+
 
 	.become_teachers header .header-body {
 
@@ -14275,7 +14271,7 @@ padding: 10px;
 
 =====================================================================================================*/
 
-	
+
 
 	.event-details-1 header .header-body {
 
@@ -15059,7 +15055,7 @@ padding: 10px;
 
 =====================================================================================================*/
 
-	
+
 
 	.event-01 {
 
@@ -15589,7 +15585,7 @@ padding: 10px;
 
 =====================================================================================================*/
 
-	
+
 
 	.contact header .header-body {
 
@@ -15893,7 +15889,7 @@ text-transform: uppercase;
 
 =====================================================================================================*/
 
-	
+
 
 	.register header .header-body {
 
@@ -16103,7 +16099,7 @@ text-transform: uppercase;
 
 =====================================================================================================*/
 
-	
+
 
 	.login header .header-body {
 
@@ -16445,7 +16441,7 @@ header .header-body .edu-navbar .edu-nav .nav li a {
 
     padding-top: 0px;
 
-}   
+}
 
 header .header-body .edu-navbar .edu-nav .nav li ul.dropdown {
 
@@ -16607,7 +16603,7 @@ header .header-body .edu-navbar .edu-nav .nav li ul.dropdown .dropdown-list-box-
 
     transition: all 0.5s ease-in-out;
 
-}	
+}
 
 span.c-author {
 
@@ -16675,9 +16671,9 @@ span.b-active {
 
   display: block;
 
-  
 
-} 
+
+}
 
 
 
