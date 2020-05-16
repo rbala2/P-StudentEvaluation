@@ -3,3 +3,5 @@
 Accelerator/db.sqlite3
 Pipfile.lock
 Pipfile
+/Accelerator/*/__pycache__/*
+/Accelerator/*/*/__pycache__/*
