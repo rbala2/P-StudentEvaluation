@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
-
+from .models import acc_questions
 
 # Create your views here.
 
@@ -34,3 +34,8 @@ def student_logout(request):
     del request.session['member']
     del request.session['fullname']
     return render(request, 'Exam/logout.html')
+
+def getQuestions(request):
+    allQuestions = acc_questions.objects.all()
+    context = {'allQuestions': allQuestions}
+    return render(request, 'Exam/questions.html',context)
