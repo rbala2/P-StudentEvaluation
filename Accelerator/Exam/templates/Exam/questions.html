@@ -1,15 +1,20 @@
-{% extends 'Exam/base.html' %}
-{% block content %}
-<div class="card mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <th>Questions</th>
-{% for question in allQuestions %}
-                                        <tr><td>{{ question.qdesc }}</td></tr>
-{% endfor %}
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-{% endblock %}
+<table class="table table-bordered" id="questionsTable" width="100%" cellspacing="0">
+    <th>Questions {{tot_ques}}</th>
+    {% for question in allQuestions %}
+    <tr>
+            <td>{{ question.question_id.qdesc }}</br>
+            <ol>
+                <li><input type="radio" name={{ question.question_id.qno }}>{{ question.question_id.opt1_desc }}</input></li>
+                </br>
+                <li><input type="radio" name={{ question.question_id.qno }}>{{ question.question_id.opt2_desc }}</input></li>
+                </br>
+                <li><input type="radio" name={{ question.question_id.qno }}>{{ question.question_id.opt3_desc }}</input></li>
+                </br>
+                <li><input type="radio" name={{ question.question_id.qno }}>{{ question.question_id.opt4_desc }}</input></li>
+                </br>
+            </ol>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<input type="submit" value="Submit" class="btn btn-primary">

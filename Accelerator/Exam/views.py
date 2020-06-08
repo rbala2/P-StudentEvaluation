@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
-from .models import acc_questions
+from .models import AccQuestions,AccTests,AccTestQuestions
+from .forms import QuestionForm
 
 # Create your views here.
 
@@ -36,6 +37,17 @@ def student_logout(request):
     return render(request, 'Exam/logout.html')
 
 def getQuestions(request):
-    allQuestions = acc_questions.objects.all()
-    context = {'allQuestions': allQuestions}
+    test_id = request.GET['test_id']
+    total_questions = request.GET["ques_cnt"]
+    allQuestions = AccTestQuestions.objects.all().filter(test_id=test_id)
+    context = {'allQuestions': allQuestions,'tot_ques': total_questions}
     return render(request, 'Exam/questions.html',context)
+
+def GetTests(request):
+    all_tests = AccTests.objects.all()
+    ctx = {'all_tests':all_tests}
+    return render(request, 'Exam/tests.html', ctx)
+
+def PostQuestions(request):
+    form = QuestionForm()
+    return render(request, 'Exam/post_questions.html', {'form': form})
