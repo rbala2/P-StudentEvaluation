@@ -7,18 +7,21 @@
         <th>Total Questions</th>
         <th>Test Duration (Minutes) </th>
         <th>Test Status</th>
-        <th>Action</th>
+        <th>Action)</th>
     </tr>
     {% for tests in all_tests %}
     <tr>
-        <td>{{ tests.test_desc }}</td>
-        <td>{{ tests.test_type }}</td>
-        <td>{{ tests.total_questions }}</td>
-        <td>{{ tests.test_duration }}</td>
-        <td>{{ tests.test_status }}</td>
-        {% if tests.test_status == "Open" %}
+        <td>{{ tests.test_id.test_desc }}</td>
+        <td>{{ tests.test_id.test_type }}</td>
+        <td>{{ tests.test_id.total_questions }}</td>
+        <td>{{ tests.test_id.test_duration }}</td>
+        <td>{{ tests.test_id.test_status }}</td>
+        {% if tests.test_id.test_status == "Open" %}
         <td>
-            <button type="button" class="btn btn-primary" onclick="window.open('http://127.0.0.1:8000/Exam/GetQuestions/?test_id={{ tests.id }}&ques_cnt={{ tests.total_questions }}')">Start </button>
+            <form method="post" action="{% url 'get-questions' test_id=tests.test_id.id ques_cnt=tests.test_id.total_questions %}"> {% csrf_token %}
+            <button type="submit" class="btn btn-primary" formtarget="_blank">Start </button>
+                </form>
+            <!--<a href="{% url 'get-questions' test_id=tests.test_id.id ques_cnt=tests.test_id.total_questions %}">Start</a>-->
         </td>
         {% else %}
         <td>

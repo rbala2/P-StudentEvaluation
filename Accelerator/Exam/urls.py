@@ -21,8 +21,10 @@ urlpatterns = [
     path('ExamHome', views.exam_home, name='exam-home'),
     path('StudentLogin/', views.student_login, name='student-login'),
     path('StudentLogout/', views.student_logout, name='student-logout'),
-    path('GetQuestions/', views.getQuestions, name='getQuestions'),
-    path('PostQuestions', views.PostQuestions, name='PostQuestions'),
-    path('GetTests', views.GetTests, name='GetTests'),
-    re_path(r'GetQuestions/$', views.getQuestions),
+    # path('GetQuestions/', views.get_questions, name='get-questions'),
+    path('PostQuestions', views.post_questions, name='post-questions'),
+    path('GetTests', views.get_tests, name='get-tests'),
+    re_path(r'^GetQuestions/(?P<test_id>\w+)/(?P<ques_cnt>\w+)/$', views.get_questions,name='get-questions'),
+    # path(f'GetQuestions\\?'+r'test_id=(?P<test_id>.*)&ques_cnt=(?P<ques_cnt>.*)/$', views.get_questions, name='get-questions'),
+
 ]
