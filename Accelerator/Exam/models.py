@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+
 
 # Create your models here.
 class AccQuestions(models.Model):
@@ -20,6 +22,7 @@ class AccQuestions(models.Model):
     class Meta:
         db_table = "acc_questions"
 
+
 class AccTests(models.Model):
     test_desc = models.CharField(max_length=100, unique=True)
     test_type = models.CharField(max_length=10, default='NA')
@@ -33,9 +36,23 @@ class AccTests(models.Model):
     class Meta:
         db_table = "acc_tests"
 
+
 class AccTestQuestions(models.Model):
     test_id = models.ForeignKey(AccTests, on_delete=models.CASCADE)
     question_id = models.ForeignKey(AccQuestions, on_delete=models.CASCADE)
 
     class Meta:
-        db_table="acc_test_questions"
+        db_table = "acc_test_questions"
+
+
+class AccStudentTests(models.Model):
+    student_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    test_id = models.ForeignKey(AccTests, on_delete=models.CASCADE)
+    test_start_time = models.DateTimeField(null=True, blank=True)
+    test_end_time = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'acc_student_tests'
