@@ -44,6 +44,20 @@ class AccTestQuestions(models.Model):
     class Meta:
         db_table = "acc_test_questions"
 
+class AccResults(models.Model):
+    login_id = models.CharField(max_length=30)
+    session_id = models.CharField(max_length=100)
+    testid = models.IntegerField()
+    qno = models.IntegerField(default=-1)
+    qtype = models.CharField(max_length=10)
+    answer_desc = models.CharField(max_length=4000, default='NA')
+    answer_fill = models.CharField(max_length=4000, default='NA')
+    answer_obj = models.CharField(max_length=100, default='NA')
+    test_starttime = models.DateTimeField()
+    test_endtime = models.DateTimeField()
+
+    class Meta:
+        db_table = "acc_results"
 
 class AccStudentTests(models.Model):
     student_id = models.ForeignKey(
