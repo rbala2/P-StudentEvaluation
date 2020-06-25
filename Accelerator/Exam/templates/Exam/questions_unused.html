@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<script src="{% static 'Exam/js/login.js' %}"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'Exam/css/login-style.css' %}">
+<body>
+<div class="card mb-4">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <th>Test done {{ ctxt }}</th>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+</body>
+</html>

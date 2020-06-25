@@ -5,9 +5,10 @@
         <th>Test Description</th>
         <th>Test Type</th>
         <th>Total Questions</th>
-        <th>Test Duration (Minutes) </th>
+        <th>Test Duration (Minutes)</th>
         <th>Test Status</th>
-        <th>Action)</th>
+        <th>Progress </th>
+        <th>Action </th>
     </tr>
     {% for tests in all_tests %}
     <tr>
@@ -16,20 +17,111 @@
         <td>{{ tests.test_id.total_questions }}</td>
         <td>{{ tests.test_id.test_duration }}</td>
         <td>{{ tests.test_id.test_status }}</td>
-        {% if tests.test_id.test_status == "Open" %}
+        <td>{{ tests.test_status }}</td>
+        {% if tests.test_id.test_status == "Open" and tests.test_status ==  "Ready" %}
         <td>
-            <form method="post" action="{% url 'get-questions' test_id=tests.test_id.id ques_cnt=tests.test_id.total_questions %}"> {% csrf_token %}
-            <button type="submit" class="btn btn-primary" formtarget="_blank">Start </button>
-                </form>
+            <!--<form method="post" action="{% url 'get-questions' tests.test_id.id tests.test_id.total_questions %}"> {% csrf_token %} -->
+            <button name="btnStart" type="submit" id={{ tests.test_id.id }} class="btn btn-primary" formtarget="_blank"
+                    data-toggle="modal"  onclick="myFunction({{ tests.test_id.id }},{{ tests.test_id.total_questions }},{{ tests.test_id.test_duration }})"
+                    data-target="#myModal">Start
+            </button>
+            <!--   </form> -->
             <!--<a href="{% url 'get-questions' test_id=tests.test_id.id ques_cnt=tests.test_id.total_questions %}">Start</a>-->
         </td>
         {% else %}
         <td>
-            <button type="button" class="btn btn-outline-success" disabled >Closed</button>
+            <button type="button" class="btn btn-outline-success" disabled>Closed</button>
         </td>
         {% endif %}
     </tr>
     {% endfor %}
 </table>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <p class="modal-title">Information and Legal Disclosure </p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Information and content in these webpages/Application is intellectual property of CPE and
+                copyright violators are strictly prosecuted and punishable under law.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <form action="#" id="formExam">
+                    <table>
+                        <tr>
+                            <tc>
+                                <input type="radio" id="agree" name="disclaimer" value="a">
+                                <label for="agree">I Accept</label>
+                            </tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>
+                                <input type="radio" id="disagree" name="disclaimer" value="d" checked="checked">
+                                <label for="disagree">I Don't Accept</label>
+                            </tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>&nbsp;</tc>
+                            <tc>
+                                <button type="button" onclick="disp()" class="btn btn-primary" data-dismiss="modal">
+                                    Submit
+                                </button>
+                            </tc>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- TODO  need to move the script tags into js and need to refactor to avoid hardcoded url-->
+<script>
+    function disp() {
+        var radios = document.getElementsByName("disclaimer");
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked)
+            {
+                if (radios[i].value == 'a'){
+                   var btnClk = document.getElementsByName("btnStart")
+                   for(var j = 0, jlength = btnClk.length; j < jlength; j++)
+                   {
+                    if (btnClk[j].value != ''){
+                        location.replace("http://127.0.0.1:8000/Exam/GetQuestions/"+btnClk[j].value)
+                    }
+                   }
+                }
+            }
+            else
+            {
+               var btnClk = document.getElementsByName("btnStart")
+               for(var j = 0, jlength = btnClk.length; j < jlength; j++){
+                    document.getElementById(btnClk[j].id).value = ''
+               }
+            }
+        }
+}
+
+    function myFunction(id,qus,dur) {
+         document.getElementById(id).value = id + '/' + qus;
+         document.cookie="exam_dur="+dur;
+    }
+</script>
 
 {% endblock %}
