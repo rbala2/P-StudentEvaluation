@@ -44,6 +44,7 @@ class AccTestQuestions(models.Model):
     class Meta:
         db_table = "acc_test_questions"
 
+
 class AccResults(models.Model):
     login_id = models.CharField(max_length=30)
     session_id = models.CharField(max_length=100)
@@ -53,11 +54,13 @@ class AccResults(models.Model):
     answer_desc = models.CharField(max_length=4000, default='NA')
     answer_fill = models.CharField(max_length=4000, default='NA')
     answer_obj = models.CharField(max_length=100, default='NA')
+    student_id = models.CharField(max_length=10, default=None)
     test_starttime = models.DateTimeField()
     test_endtime = models.DateTimeField()
 
     class Meta:
         db_table = "acc_results"
+
 
 class AccStudentTests(models.Model):
     student_id = models.ForeignKey(
@@ -67,6 +70,7 @@ class AccStudentTests(models.Model):
     test_id = models.ForeignKey(AccTests, on_delete=models.CASCADE)
     test_start_time = models.DateTimeField(null=True, blank=True)
     test_end_time = models.DateTimeField(null=True, blank=True)
+    test_status = models.CharField(max_length=50, default='Ready')
 
     class Meta:
         db_table = 'acc_student_tests'

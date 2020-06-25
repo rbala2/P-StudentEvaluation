@@ -23,9 +23,7 @@ urlpatterns = [
     path('StudentLogout/', views.student_logout, name='student-logout'),
     path('PostQuestions', views.post_questions, name='post-questions'),
     path('GetTests', views.get_tests, name='get-tests'),
-    re_path(r'^GetQuestions/(?P<test_id>\w+)/(?P<ques_cnt>\w+)/$', views.get_questions,name='get-questions'),
     path('TestComplete/', views.test_complete, name='test-complete'),
-    path('GetQuestions/', views.QuestionsView.as_view(), name='get-questions'),
-    path('Examboard/', views.exam_board, name='exam-board'),
+    re_path(r'^GetQuestions/(?P<test_id>\w+)/(?P<ques_cnt>\w+)/$', views.QuestionsView.as_view(), name='get-questions'),
 
 ]

@@ -1,15 +1,23 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate
-from .models import AccQuestions, AccTests, AccTestQuestions, AccResults
-from .forms import QuestionForm
+from django.contrib.auth import authenticate, login, logout, decorators
+from django.contrib.auth.views import logout_then_login
 from django.views.generic import ListView
+from .models import AccQuestions, AccTests, AccTestQuestions, AccStudentTests, AccResults
+from .forms import QuestionForm
 import datetime, pytz
-
+from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
+
 def student_login(request):
+    if request.session.get('member', 'NA') != "NA" and \
+            request.COOKIES.get('id') == request.session.get('member', 'NA'):
+        return redirect('exam-home')
     return render(request, 'Exam/login.html')
 
 
@@ -27,7 +35,8 @@ def exam_home(request):
             response.set_cookie(key='id', value=usr_instance.username)
             return response
         else:
-            return render(request, 'Exam/errorpage.html')
+            # messages.error(request, "Password not match")
+            return render(request, 'Exam/login.html')
     else:
         if request.session.get('member', 'NA') != "NA" and \
                 request.COOKIES.get('id') == request.session.get('member', 'NA'):
@@ -36,60 +45,81 @@ def exam_home(request):
 
 
 def student_logout(request):
-    del request.session['member']
-    del request.session['fullname']
-    return render(request, 'Exam/logout.html')
+    logout(request)
+    return logout_then_login(request, login_url="student-login")
 
-def getQuestions(request):
-    test_id = request.GET['test_id']
-    total_questions = request.GET["ques_cnt"]
-    allQuestions = AccTestQuestions.objects.all().filter(test_id=test_id)
-    context = {'allQuestions': allQuestions,'tot_ques': total_questions}
-    return render(request, 'Exam/questions.html',context)
 
-def GetTests(request):
-    all_tests = AccTests.objects.all()
-    ctx = {'all_tests':all_tests}
+# def get_questions(request, test_id, ques_cnt):
+#     all_questions = AccTestQuestions.objects.all().filter(test_id=test_id)
+#     context = {'allQuestions': all_questions, 'tot_ques': ques_cnt}
+#     return render(request, 'Exam/questions_unused.html', context)
+
+
+@decorators.login_required(login_url='student-login')
+def get_tests(request):
+    all_tests = AccStudentTests.objects.all().filter(student_id=request.user.id)
+    ctx = {'all_tests': all_tests}
     return render(request, 'Exam/tests.html', ctx)
 
-def PostQuestions(request):
+
+def post_questions(request):
     form = QuestionForm()
     return render(request, 'Exam/post_questions.html', {'form': form})
 
-def exam_board(request):
-    return render(request, 'Exam/examboard.html')
 
 def test_complete(request):
     cnt=1
     obj = AccResults()
+    # tobj = AccStudentTests.objects.get(student_id=request.user.id,test_id=request.COOKIES['test_id'])
     ctxt = dict(zip(request.POST.keys(), request.POST.values()))
     del ctxt['csrfmiddlewaretoken']
-    #del ctxt['test_start_time']
+    # del ctxt['test_start_time']
     for ky,val in ctxt.items():
         if ky != 'csrfmiddlewaretoken':
-            obj.id = cnt
+            # obj.id = cnt
+            obj.pk = None
+            obj.student_id = request.user.id
             obj.login_id = request.session['member']
             obj.session_id = request.POST['csrfmiddlewaretoken']
-            obj.testid = 1
+            obj.testid = request.COOKIES['test_id']
             obj.qno = int(ky)
             obj.qtype = 'OBJ'
             obj.answer_obj = val
-            obj.test_starttime = request.COOKIES.get('start_time')
+            obj.test_starttime = datetime.datetime.now()
             obj.test_endtime = datetime.datetime.now()
             obj.save()
             cnt += 1
-    return render(request, 'Exam/questions.html', {'ctxt': ctxt})
+    #return render(request, 'Exam/base.html', {'ctxt': ctxt})
+    # tobj.test_status = 'Completed'
+    # tobj.save()
+    return redirect('exam-home')
 
 
+@method_decorator(never_cache, name='dispatch')
 class QuestionsView(ListView):
-    model = AccQuestions
+    # model = AccQuestions
+    template_name = 'Exam/questions.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['start_time'] = datetime.datetime.now()
+    # def get(self, request, **response_kwargs):
+    #     model = AccQuestions.objects.all()
+    #     return render(request, 'Exam/questions.html')
+
+    # def get_context_data(self, **ctx_kwargs):
+    #     context = super().get_context_data(**ctx_kwargs)
+    #     context['test_id'] = self.kwargs['test_id']
     #     return context
-
     def render_to_response(self, context, **response_kwargs):
         response = super(QuestionsView, self).render_to_response(context, **response_kwargs)
-        response.set_cookie("start_time",datetime.datetime.now().astimezone(pytz.timezone('Asia/Calcutta')))
+        response.set_cookie("test_id", self.kwargs['test_id'])
+        # if self.kwargs.get('exam_dur',-1) == -1:
+        #     return redirect('exam-home')
+        # else:
+        tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
+        tobj.test_status = 'Completed'
+        tobj.save()
+        #     response.set_cookie("exam_dur", -1)
         return response
+
+    def get_queryset(self):
+        qus = AccTestQuestions.objects.filter(test_id_id=self.kwargs['test_id'])
+        return AccQuestions.objects.filter(qno__in=qus.values('question_id_id'))
