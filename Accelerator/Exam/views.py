@@ -21,6 +21,7 @@ def student_login(request):
     return render(request, 'Exam/login.html')
 
 
+# @decorators.login_required(login_url='student-login')
 def exam_home(request):
     context = {'full_name': ''}
 
@@ -70,6 +71,10 @@ def post_questions(request):
 def test_complete(request):
     cnt=1
     obj = AccResults()
+    tobj = AccStudentTests.objects.get(student_id=request.user.id, test_id=request.COOKIES['test_id'])
+    if tobj.test_status == 'Completed':
+        return render(request, 'Exam/errorpage.html')
+
     # tobj = AccStudentTests.objects.get(student_id=request.user.id,test_id=request.COOKIES['test_id'])
     ctxt = dict(zip(request.POST.keys(), request.POST.values()))
     del ctxt['csrfmiddlewaretoken']
@@ -90,8 +95,8 @@ def test_complete(request):
             obj.save()
             cnt += 1
     #return render(request, 'Exam/base.html', {'ctxt': ctxt})
-    # tobj.test_status = 'Completed'
-    # tobj.save()
+    tobj.test_status = 'Completed'
+    tobj.save()
     return redirect('exam-home')
 
 
@@ -104,20 +109,21 @@ class QuestionsView(ListView):
     #     model = AccQuestions.objects.all()
     #     return render(request, 'Exam/questions.html')
 
-    # def get_context_data(self, **ctx_kwargs):
-    #     context = super().get_context_data(**ctx_kwargs)
-    #     context['test_id'] = self.kwargs['test_id']
-    #     return context
+    def get_context_data(self, **ctx_kwargs):
+        context = super().get_context_data(**ctx_kwargs)
+        context['ques_cnt'] = self.kwargs['ques_cnt']
+        return context
+
     def render_to_response(self, context, **response_kwargs):
         response = super(QuestionsView, self).render_to_response(context, **response_kwargs)
         response.set_cookie("test_id", self.kwargs['test_id'])
-        # if self.kwargs.get('exam_dur',-1) == -1:
-        #     return redirect('exam-home')
-        # else:
-        tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
-        tobj.test_status = 'Completed'
-        tobj.save()
-        #     response.set_cookie("exam_dur", -1)
+        if self.request.COOKIES['exam_dur'] == '-1':
+            return redirect('exam-home')
+        else:
+            tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
+            tobj.test_status = 'Attempted'
+            tobj.save()
+            response.set_cookie("exam_dur", '-1')
         return response
 
     def get_queryset(self):

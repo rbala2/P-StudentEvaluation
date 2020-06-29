@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <th>Questions</th>
+                                        <th>Questions : {{ ques_cnt }} </th>
                                         <form method="POST" action="{% url 'test-complete' %}"> {% csrf_token%}
                                          <tr><td>
                                          <ol>

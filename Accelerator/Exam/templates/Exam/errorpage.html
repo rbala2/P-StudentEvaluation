@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>Student Portal</title>
 </head>
 <body>
-<h1> 403 Page not found</h1>
+<h1> Access to this page is forbidden, Please use student portal </h1>
+<a href="{% url 'student-login' %}"> Student Portal Login </a>
 </body>
 </html>
