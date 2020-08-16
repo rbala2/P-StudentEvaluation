@@ -31,7 +31,7 @@ div.d {
 <style type="text/css">
 body > iframe { display: none; }
 
-#defaultCountdown { width: 100px; height: 40px; }
+#defaultCountdown { width: 140px; height: 40px; }
 </style>
 <link rel="stylesheet" href="{% static 'Exam/css/jquery.countdown.css' %}">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -39,7 +39,7 @@ body > iframe { display: none; }
 <script src="{% static 'Exam/js/jquery.countdown.js' %}"></script>
 <script>
 $(function () {
-$('#defaultCountdown').countdown({until: {{ exam_dur }} * 60 , format: 'MS', description: '', timeSeparator:':',compact:true , onExpiry: liftOff });
+$('#defaultCountdown').countdown({until: {{ exam_dur }} * 60 , format: 'HMS', description: '', timeSeparator:':',compact:true , onExpiry: liftOff });
 });
 function liftOff() {
     var x = document.getElementsByName('exam_submit');
@@ -56,11 +56,11 @@ function liftOff() {
                                                  <div class="col-lg-2">
                                                      <div class="b"> Questions : {{ ques_cnt }} </div>
                                                  </div>
-                                                <div class="col-lg-7" >
+                                                <div class="col-lg-6" >
                                                     <div class="a" >{{ exam_desc }}</div>
                                                  </div>
                                                  <div class="col-lg-2">
-                                                     <div class="b"> Max-Time in min : {{ exam_dur }} </div>
+                                                     <div class="c"> Max-Time in min : {{ exam_dur }} </div>
                                                  </div>
                                                  <div class="c" id="defaultCountdown"></div>
                                              </div>
