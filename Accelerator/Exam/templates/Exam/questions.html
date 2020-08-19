@@ -4,18 +4,69 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <script src="{% static 'Exam/js/login.js' %}"></script>
 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'Exam/css/login-style.css' %}">
 <body>
+<style>
+div.a {
+  text-align: center;
+}
+
+div.b {
+  text-align: left;
+}
+
+div.c {
+  text-align: right;
+}
+
+div.d {
+  text-align: justify;
+}
+</style>
+<style type="text/css">
+body > iframe { display: none; }
+
+#defaultCountdown { width: 140px; height: 40px; }
+</style>
+<link rel="stylesheet" href="{% static 'Exam/css/jquery.countdown.css' %}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src= "{% static 'Exam/js/jquery.plugin.js' %}"></script>
+<script src="{% static 'Exam/js/jquery.countdown.js' %}"></script>
+<script>
+$(function () {
+$('#defaultCountdown').countdown({until: {{ exam_dur }} * 60 , format: 'HMS', description: '', timeSeparator:':',compact:true , onExpiry: liftOff });
+});
+function liftOff() {
+    var x = document.getElementsByName('exam_submit');
+    x[0].submit(); // Form submission
+}
+</script>
 <div class="card mb-4">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <th>Questions : {{ ques_cnt }} </th>
-                                        <form method="POST" action="{% url 'test-complete' %}"> {% csrf_token%}
+                                        <th>
+                                            <div class="container-fluid">
+                                             <div class="row">
+                                                 <div class="col-lg-2">
+                                                     <div class="b"> Questions : {{ ques_cnt }} </div>
+                                                 </div>
+                                                <div class="col-lg-6" >
+                                                    <div class="a" >{{ exam_desc }}</div>
+                                                 </div>
+                                                 <div class="col-lg-2">
+                                                     <div class="c"> Max-Time in min : {{ exam_dur }} </div>
+                                                 </div>
+                                                 <div class="c" id="defaultCountdown"></div>
+                                             </div>
+                                            </div>
+                                        </th>
+                                        <form method="POST" action="{% url 'test-complete' %}" name="exam_submit"> {% csrf_token%}
                                          <tr><td>
                                          <ol>
                                          {% for field in object_list %}

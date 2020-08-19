@@ -112,18 +112,23 @@ class QuestionsView(ListView):
     def get_context_data(self, **ctx_kwargs):
         context = super().get_context_data(**ctx_kwargs)
         context['ques_cnt'] = self.kwargs['ques_cnt']
+        context['exam_desc'] = self.request.COOKIES['exam_desc']
+        context['exam_dur'] = self.request.COOKIES['exam_dur']
         return context
 
     def render_to_response(self, context, **response_kwargs):
         response = super(QuestionsView, self).render_to_response(context, **response_kwargs)
         response.set_cookie("test_id", self.kwargs['test_id'])
-        if self.request.COOKIES['exam_dur'] == '-1':
+        # response.set_cookie("exam_desc", self.request.COOKIES['exam_desc'])
+        tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
+        # if self.request.COOKIES['exam_dur'] == '-1':
+        if tobj.test_status == 'Attempted':
             return redirect('exam-home')
         else:
-            tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
+            # tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
             tobj.test_status = 'Attempted'
             tobj.save()
-            response.set_cookie("exam_dur", '-1')
+            # response.set_cookie("exam_dur", '-1')
         return response
 
     def get_queryset(self):

@@ -22,7 +22,7 @@
         <td>
             <!--<form method="post" action="{% url 'get-questions' tests.test_id.id tests.test_id.total_questions %}"> {% csrf_token %} -->
             <button name="btnStart" type="submit" id={{ tests.test_id.id }} class="btn btn-primary" formtarget="_blank"
-                    data-toggle="modal"  onclick="myFunction({{ tests.test_id.id }},{{ tests.test_id.total_questions }},{{ tests.test_id.test_duration }})"
+                    data-toggle="modal"  onclick="myFunction({{ tests.test_id.id }},{{ tests.test_id.total_questions }},{{ tests.test_id.test_duration }},'{{ tests.test_id.test_desc }}')"
                     data-target="#myModal">Start
             </button>
             <!--   </form> -->
@@ -118,9 +118,10 @@
         }
 }
 
-    function myFunction(id,qus,dur) {
+    function myFunction(id,qus,dur,desc) {
          document.getElementById(id).value = id + '/' + qus;
          document.cookie="exam_dur="+dur+";path=/";
+         document.cookie="exam_desc="+desc+";path=/";
     }
 </script>
 
