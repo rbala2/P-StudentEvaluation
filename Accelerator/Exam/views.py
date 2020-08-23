@@ -6,11 +6,12 @@ from django.contrib.auth.views import logout_then_login
 from django.views.generic import ListView
 from .models import AccQuestions, AccTests, AccTestQuestions, AccStudentTests, AccResults
 from .forms import QuestionForm
-import datetime, pytz
+from  datetime import datetime, timedelta
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 
+from . import utilities
 # Create your views here.
 
 
@@ -79,6 +80,12 @@ def test_complete(request):
     ctxt = dict(zip(request.POST.keys(), request.POST.values()))
     del ctxt['csrfmiddlewaretoken']
     # del ctxt['test_start_time']
+
+    if len(ctxt) == 0:
+        tobj.test_status = 'Attempted'
+        tobj.save()
+        return redirect('exam-home')
+
     for ky,val in ctxt.items():
         if ky != 'csrfmiddlewaretoken':
             # obj.id = cnt
@@ -90,13 +97,17 @@ def test_complete(request):
             obj.qno = int(ky)
             obj.qtype = 'OBJ'
             obj.answer_obj = val
-            obj.test_starttime = datetime.datetime.now()
-            obj.test_endtime = datetime.datetime.now()
+            # obj.test_starttime = request.COOKIES['exam_start_time']
+            obj.test_starttime = request.session['exam_start_time']
+            obj.test_endtime = datetime.now()
             obj.save()
             cnt += 1
     #return render(request, 'Exam/base.html', {'ctxt': ctxt})
     tobj.test_status = 'Completed'
     tobj.save()
+    # exam evaluation
+    utilities.evaluate_exam(request.user.id,request.POST['csrfmiddlewaretoken'],request.COOKIES['test_id'])
+    del request.session["exam_start_time"]
     return redirect('exam-home')
 
 
@@ -119,6 +130,12 @@ class QuestionsView(ListView):
     def render_to_response(self, context, **response_kwargs):
         response = super(QuestionsView, self).render_to_response(context, **response_kwargs)
         response.set_cookie("test_id", self.kwargs['test_id'])
+        # response.set_cookie("exam_start_time", datetime.now())
+        if self.request.session.get("exam_start_time", 'NA') == 'NA':
+            self.request.session["exam_start_time"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+        else:
+            return redirect('exam-home')
+
         # response.set_cookie("exam_desc", self.request.COOKIES['exam_desc'])
         tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
         # if self.request.COOKIES['exam_dur'] == '-1':

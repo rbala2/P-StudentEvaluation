@@ -1,95 +1,61 @@
 {% load static %}
-<html>
-<head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!------ Include the above in your HEAD tag ---------->
-</head>
-<script src="{% static 'Exam/js/login.js' %}"></script>
-<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{% static 'Exam/css/login-style.css' %}">
-<body>
-<style>
-div.a {
-  text-align: center;
-}
-
-div.b {
-  text-align: left;
-}
-
-div.c {
-  text-align: right;
-}
-
-div.d {
-  text-align: justify;
-}
-</style>
-<style type="text/css">
-body > iframe { display: none; }
-
-#defaultCountdown { width: 140px; height: 40px; }
-</style>
 <link rel="stylesheet" href="{% static 'Exam/css/jquery.countdown.css' %}">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src= "{% static 'Exam/js/jquery.plugin.js' %}"></script>
+<script src="{% static 'Exam/js/jquery.min.js' %}"></script>
+<script src="{% static 'Exam/js/jquery.plugin.js' %}"></script>
 <script src="{% static 'Exam/js/jquery.countdown.js' %}"></script>
+<style type="text/css">
+div.absolute {
+  position: absolute;
+  right: 0;
+}
+#defaultCountdown { width: 150px; height: 30px;}
+</style>
 <script>
 $(function () {
-$('#defaultCountdown').countdown({until: {{ exam_dur }} * 60 , format: 'HMS', description: '', timeSeparator:':',compact:true , onExpiry: liftOff });
+$('#defaultCountdown').countdown({until: {{ exam_dur }} * 60 , description: '', timeSeparator:':',compact:true , layout: '<b>TimeLeft: {hnn}{sep}{mnn}{sep}{snn}</b>', onExpiry: liftOff });
 });
 function liftOff() {
     var x = document.getElementsByName('exam_submit');
     x[0].submit(); // Form submission
 }
+document.addEventListener('contextmenu', event => event.preventDefault());
+$(document).ready(function() {
+          $('body').bind('cut copy', function(e) {
+              e.preventDefault();
+            });
+        });
 </script>
-<div class="card mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <th>
-                                            <div class="container-fluid">
-                                             <div class="row">
-                                                 <div class="col-lg-2">
-                                                     <div class="b"> Questions : {{ ques_cnt }} </div>
-                                                 </div>
-                                                <div class="col-lg-6" >
-                                                    <div class="a" >{{ exam_desc }}</div>
-                                                 </div>
-                                                 <div class="col-lg-2">
-                                                     <div class="c"> Max-Time in min : {{ exam_dur }} </div>
-                                                 </div>
-                                                 <div class="c" id="defaultCountdown"></div>
-                                             </div>
-                                            </div>
-                                        </th>
-                                        <form method="POST" action="{% url 'test-complete' %}" name="exam_submit"> {% csrf_token%}
-                                         <tr><td>
-                                         <ol>
-                                         {% for field in object_list %}
-                                             <li>{{ field.qdesc }} </li> <br>
-                                                    <input type="radio" id="opt1" name={{field.qno}} value="opt1">
-                                                    <label for="opt1"> {{ field.opt1_desc}} </label><br>
-                                                    <input type="radio" id="opt2" name={{field.qno}} value="opt2">
-                                                    <label for="opt2"> {{ field.opt2_desc}} </label><br>
-                                                    <input type="radio" id="opt3" name={{field.qno}} value="opt3">
-                                                    <label for="opt3"> {{ field.opt3_desc}}</label><br>
-                                                    <input type="radio" id="opt4" name={{field.qno}} value="opt4">
-                                                    <label for="opt4"> {{ field.opt4_desc}} </label><br>
-                                         {% endfor %}
-                                         </ol>
-                                         </td></tr>
-                                        <tr><td><table style="margin:auto; width:50%">
-                                            <tr><td align="center">
-                                            <button type="submit" class="save btn btn-default">Submit</button></td></tr>
-                                            </td></tr></table>
-                                        </form>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-</body>
-</html>
+<img src= "{% static 'Exam/assets/img/logo.png' %}" class="rounded mx-auto d-block">
+<div class="absolute" id="defaultCountdown" ></div>
+<br>
+<table class="table table-bordered" id="questions" width="100%" cellspacing="0">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+            <th>Questions : {{ ques_cnt }} </th>
+        <th class="text-center">{{ exam_desc }}</th>
+        <th class="text-right"> Max-Time in min : {{ exam_dur }}</th>
+        </table>
+            <form method="POST" action="{% url 'test-complete' %}" name="exam_submit"> {% csrf_token%}
+             <tr><td>
+             <ol>
+             {% for field in object_list %}
+                 <br>
+                 <li>{{ field.qdesc }} </li> <br>
+                        <input type="radio" id="opt1" name={{field.qno}} value="opt1">
+                        <label for="opt1"> {{ field.opt1_desc}} </label><br>
+                        <input type="radio" id="opt2" name={{field.qno}} value="opt2">
+                        <label for="opt2"> {{ field.opt2_desc}} </label><br>
+                        <input type="radio" id="opt3" name={{field.qno}} value="opt3">
+                        <label for="opt3"> {{ field.opt3_desc}}</label><br>
+                        <input type="radio" id="opt4" name={{field.qno}} value="opt4">
+                        <label for="opt4"> {{ field.opt4_desc}} </label><br>
+             {% endfor %}
+             </ol>
+             </td></tr>
+            <tr><td><table style="margin:auto; width:50%">
+                <tr><td align="center">
+                <button type="submit" class="save btn btn-default">Submit</button></td></tr>
+                </td></tr></table>
+            </form>
+</table>
