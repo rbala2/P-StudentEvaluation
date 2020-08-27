@@ -84,6 +84,7 @@ def test_complete(request):
     if len(ctxt) == 0:
         tobj.test_status = 'Attempted'
         tobj.save()
+        del request.session["exam_start_time"]
         return redirect('exam-home')
 
     for ky,val in ctxt.items():
@@ -134,12 +135,14 @@ class QuestionsView(ListView):
         if self.request.session.get("exam_start_time", 'NA') == 'NA':
             self.request.session["exam_start_time"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         else:
+            del self.request.session["exam_start_time"]
             return redirect('exam-home')
 
         # response.set_cookie("exam_desc", self.request.COOKIES['exam_desc'])
         tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
         # if self.request.COOKIES['exam_dur'] == '-1':
         if tobj.test_status == 'Attempted':
+            del self.request.session["exam_start_time"]
             return redirect('exam-home')
         else:
             # tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])

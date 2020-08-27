@@ -1,5 +1,8 @@
 {% extends 'Exam/base.html' %}
 {% block content %}
+<div class="container-fluid" style="margin-top:15px;">
+    <!-- Todo: Datatable -->
+    <h4 align="center">Assigned Exams</h4>
 <table class="table table-sm table-bordered" id="testsTbl" width="100%" cellspacing="0">
     <tr>
         <th>Test Description</th>
@@ -36,6 +39,7 @@
     </tr>
     {% endfor %}
 </table>
+</div>
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">

@@ -27,6 +27,7 @@ $(document).ready(function() {
             });
         });
 </script>
+<div class="card sticky-top">
 <img src= "{% static 'Exam/assets/img/logo.png' %}" class="rounded mx-auto d-block">
 <div class="absolute" id="defaultCountdown" ></div>
 <br>
@@ -36,6 +37,8 @@ $(document).ready(function() {
         <th class="text-center">{{ exam_desc }}</th>
         <th class="text-right"> Max-Time in min : {{ exam_dur }}</th>
         </table>
+</table>
+</div>
             <form method="POST" action="{% url 'test-complete' %}" name="exam_submit"> {% csrf_token%}
              <tr><td>
              <ol>
