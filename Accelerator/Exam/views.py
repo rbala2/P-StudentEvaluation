@@ -135,8 +135,10 @@ class QuestionsView(ListView):
         if self.request.session.get("exam_start_time", 'NA') == 'NA':
             self.request.session["exam_start_time"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         else:
+            # TODO: Need to rewrite a better logic to kill session varible when a back button is pressed
             del self.request.session["exam_start_time"]
-            return redirect('exam-home')
+            return render(self.request, 'Exam/reload.html')
+            # return redirect('exam-home')
 
         # response.set_cookie("exam_desc", self.request.COOKIES['exam_desc'])
         tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
