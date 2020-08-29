@@ -83,6 +83,7 @@ def test_complete(request):
 
     if len(ctxt) == 0:
         tobj.test_status = 'Attempted'
+        tobj.test_taken_dt = datetime.now()
         tobj.save()
         del request.session["exam_start_time"]
         return redirect('exam-home')
@@ -105,6 +106,7 @@ def test_complete(request):
             cnt += 1
     #return render(request, 'Exam/base.html', {'ctxt': ctxt})
     tobj.test_status = 'Completed'
+    tobj.test_taken_dt = datetime.now()
     tobj.save()
     # exam evaluation
     utilities.evaluate_exam(request.user.id,request.POST['csrfmiddlewaretoken'],request.COOKIES['test_id'])
@@ -149,6 +151,7 @@ class QuestionsView(ListView):
         else:
             # tobj = AccStudentTests.objects.get(student_id=self.request.user.id, test_id=self.kwargs['test_id'])
             tobj.test_status = 'Attempted'
+            tobj.test_taken_dt = datetime.now()
             tobj.save()
             # response.set_cookie("exam_dur", '-1')
         return response

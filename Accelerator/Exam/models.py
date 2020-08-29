@@ -74,6 +74,7 @@ class AccStudentTests(models.Model):
     )
     test_id = models.ForeignKey(AccTests, on_delete=models.CASCADE)
     test_assigned_dt = models.DateTimeField(null=True, blank=True)
+    test_taken_dt = models.DateTimeField(null=True, blank=True)
     test_expiry_dt = models.DateTimeField(null=True, blank=True)
     test_status = models.CharField(max_length=50, default='Ready')
 
@@ -93,6 +94,7 @@ class AccResultsSummary(models.Model):
     questions_attempted = models.IntegerField(default=0)
     answered_correct = models.IntegerField(default=0)
     answered_wrong = models.IntegerField(default=0)
+    total_questions = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'acc_results_summary'

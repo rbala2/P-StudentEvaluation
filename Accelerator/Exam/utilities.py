@@ -14,7 +14,6 @@ def evaluate_exam(student_id, session_id, testid):
 
     for rec in robj.values():
         qobj = AccQuestions.objects.filter(qno=rec['qno'])   # qobj should have only one record
-        print(qobj.values()[0])
         if qobj.values()[0]['answer'] == rec['answer_obj']:
             answered_correct += 1
             total_score = total_score + qobj.values()[0]['marks_carry']
@@ -36,8 +35,9 @@ def evaluate_exam(student_id, session_id, testid):
     sobj.testid = testid
     sobj.marks_obtained = total_score
     sobj.total_marks = tobj.values()[0]['total_marks']
+    sobj.total_questions = tobj.values()[0]['total_questions']
     sobj.save()
-    # TODO need to add exceptions for failures when writing to DB to preserve the Exam data in file system (JSON format)
-    # TODO need to add a slider for question navigation on a page and timer visibility through out the page.
+    # TODO: need to add exceptions for failures when writing to DB to preserve the Exam data in file system (JSON format)
+    # TODO: need to add a slider for question navigation on a page and timer visibility through out the page.
 
 
