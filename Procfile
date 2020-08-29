@@ -1,0 +1,1 @@
+web: gunicorn Accelraotor.wsgi --log-file -
