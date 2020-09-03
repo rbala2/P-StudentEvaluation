@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.views import logout_then_login
 from django.views.generic import ListView
-from .models import AccQuestions, AccTests, AccTestQuestions, AccStudentTests, AccResults
+from .models import AccQuestions, AccTests, AccTestQuestions, AccStudentTests, AccResults, AccResultsSummary
 from .forms import QuestionForm
 from  datetime import datetime, timedelta
 from django.shortcuts import get_object_or_404
@@ -25,7 +25,6 @@ def student_login(request):
 # @decorators.login_required(login_url='student-login')
 def exam_home(request):
     context = {'full_name': ''}
-
     if request.method == 'POST' and request.POST is not None:
         usr_instance = authenticate(username=request.POST['email'], password=request.POST['password'])
         if usr_instance is not None:
@@ -33,7 +32,8 @@ def exam_home(request):
             context['fullname'] = usr_instance.get_full_name()
             request.session['member'] = usr_instance.username
             request.session['fullname'] = context['fullname']
-            response = render(request, 'Exam/base.html', context)
+            std_results = AccResultsSummary.objects.all().filter(student_id=request.user.id)
+            response = render(request, 'Exam/base.html', locals())
             response.set_cookie(key='id', value=usr_instance.username)
             return response
         else:
@@ -42,7 +42,8 @@ def exam_home(request):
     else:
         if request.session.get('member', 'NA') != "NA" and \
                 request.COOKIES.get('id') == request.session.get('member', 'NA'):
-            return render(request, 'Exam/base.html', {'fullname': request.session['fullname']})
+            std_results = AccResultsSummary.objects.all().filter(student_id=request.user.id)
+            return render(request, 'Exam/base.html', locals())
         return render(request, 'Exam/errorpage.html')
 
 

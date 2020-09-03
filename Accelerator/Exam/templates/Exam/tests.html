@@ -3,7 +3,8 @@
 <div class="container-fluid" style="margin-top:15px;">
     <!-- Todo: Datatable -->
     <h4 align="center">Assigned Exams</h4>
-<table class="table table-sm table-bordered" id="testsTbl" width="100%" cellspacing="0">
+<table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
     <tr>
         <th>Test Description</th>
         <th>Test Type</th>
@@ -13,6 +14,7 @@
         <th>Progress </th>
         <th>Action </th>
     </tr>
+    </thead>
     {% for tests in all_tests %}
     <tr>
         <td>{{ tests.test_id.test_desc }}</td>
