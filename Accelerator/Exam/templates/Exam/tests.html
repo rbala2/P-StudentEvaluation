@@ -108,7 +108,8 @@
                    for(var j = 0, jlength = btnClk.length; j < jlength; j++)
                    {
                     if (btnClk[j].value != ''){
-                        location.replace("http://127.0.0.1:8000/Exam/GetQuestions/"+btnClk[j].value)
+                        var tmp = window.location.href.split('/')
+                        location.replace(tmp[0]+"/Exam/GetQuestions/"+btnClk[j].value)
                     }
                    }
                 }
