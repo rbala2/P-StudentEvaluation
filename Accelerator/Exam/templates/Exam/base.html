@@ -100,7 +100,7 @@
                         <div class="card-body">Attendance</div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <canvas id="myPieChart" width="100%" height="50"></canvas>
+                                <canvas id="myPieChart" width="100%" height="105"></canvas>
                             </div>
                         </div>
                     </div>
@@ -108,12 +108,10 @@
                         <div class="card-body">Results</div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <canvas id="ResultsPieChart" width="100%" height="50"></canvas>
+                                <canvas id="ResultsPieChart" width="100%" height="105"></canvas>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Recent Exam Results</div>
@@ -143,21 +141,26 @@
                                 <thead>
                                 <tr>
                                     <th>Test Name</th>
-                                    <th>Marks Obtained</th>
-                                    <th>Total Marks</th>
+                                    <th>Test Start Date</th>
+                                    <th>Test End Date</th>
                                     <th>Questions Attempted</th>
                                     <th>Answered Correct</th>
                                     <th>Answered Wrong</th>
+                                    <th>Marks Obtained</th>
+                                    <th>Total Marks</th>
                                 </tr>
                                 </thead>
                                 {% for results in std_results %}
                                 <tr>
                                     <td>{{ results.testid }}</td>
-                                    <td>{{ results.marks_obtained }}</td>
-                                    <td>{{ results.total_marks }}</td>
+                                    <td>{{ results.test_start_time|date:"d-M-Y h:m:sa" }}</td>
+                                    <td>{{ results.test_end_time|date:"d-M-Y h:m:sa" }}</td>
                                     <td>{{ results.questions_attempted }}</td>
                                     <td>{{ results.answered_correct }}</td>
                                     <td>{{ results.answered_wrong }}</td>
+                                    <td>{{ results.marks_obtained }}</td>
+                                    <td>{{ results.total_marks }}</td>
+
                                 </tr>
                                 {% endfor %}
                             </table>
