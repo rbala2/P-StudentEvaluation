@@ -1,1 +1,7 @@
-django==2.2.13
+-i https://pypi.org/simple
+django-autoslug==1.9.8
+django==2.2.10
+gunicorn==19.9.0
+pytz==2020.1
+sqlparse==0.3.1
+whitenoise==5.2.0
