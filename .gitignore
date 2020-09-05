@@ -1,7 +1,8 @@
 # ignoring .idea files.
 .idea
 Accelerator/db.sqlite3
-Pipfile.*
 /Accelerator/*/__pycache__/*
 /Accelerator/*/*/__pycache__/
 /Accelerator/*/migrations/*
+/Pipfile*
+/Procfile
