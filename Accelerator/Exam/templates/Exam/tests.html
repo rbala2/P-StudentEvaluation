@@ -26,7 +26,7 @@
         {% if tests.test_id.test_status == "Open" and tests.test_status ==  "Ready" %}
         <td>
             <!--<form method="post" action="{% url 'get-questions' tests.test_id.id tests.test_id.total_questions %}"> {% csrf_token %} -->
-            <button name="btnStart" type="submit" id={{ tests.test_id.id }} class="btn btn-primary" formtarget="_blank"
+            <button name="btnStart" type="submit" id={{ tests.test_id.id }} class="btn btn-success btn-sm" formtarget="_blank"
                     data-toggle="modal"  onclick="myFunction({{ tests.test_id.id }},{{ tests.test_id.total_questions }},{{ tests.test_id.test_duration }},'{{ tests.test_id.test_desc }}')"
                     data-target="#myModal">Start
             </button>
@@ -35,7 +35,7 @@
         </td>
         {% else %}
         <td>
-            <button type="button" class="btn btn-outline-success" disabled>Closed</button>
+            <button type="button" class="btn btn-danger btn-sm" disabled>Closed</button>
         </td>
         {% endif %}
     </tr>
