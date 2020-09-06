@@ -85,6 +85,7 @@ class AccStudentTests(models.Model):
 class AccResultsSummary(models.Model):
     student_id = models.CharField(max_length=10, default=None)
     testid = models.IntegerField(default=0)
+    test_desc = models.CharField(max_length=100, default=None)
     session_id = models.CharField(max_length=100)
     test_start_time = models.DateTimeField(null=True, blank=True)
     test_end_time = models.DateTimeField(null=True, blank=True)

@@ -153,7 +153,7 @@
                                 </thead>
                                 {% for results in std_results %}
                                 <tr>
-                                    <td>{{ results.testid }}</td>
+                                    <td>{{ results.test_desc }}</td>
                                     <td>{{ results.test_start_time|date:"d-M-Y h:m:sa" }}</td>
                                     <td>{{ results.test_end_time|date:"d-M-Y h:m:sa" }}</td>
                                     <td>{{ results.questions_attempted }}</td>
