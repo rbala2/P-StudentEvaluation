@@ -101,7 +101,7 @@
                         <div class="card-body">Attendance</div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <canvas id="myPieChart" width="100%" height="105"></canvas>
+                                <canvas id="myAttendance" width="100%" height="50" ></canvas>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         <div class="card-body">Results</div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <canvas id="ResultsPieChart" width="100%" height="105"></canvas>
+                                <canvas id="myResults" data-url="{% url 'results-pie-chart' %}" width="100%" height="50"></canvas>
                             </div>
                         </div>
                     </div>
@@ -190,11 +190,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="{% static 'Exam/js/scripts.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="{% static 'Exam/assets/demo/datatables-demo.js'%}"></script>
-<script src="{% static 'Exam/assets/demo/chart-pie-demo.js'%}"></script>
+<script src="{% static 'Exam/js/student-charts.js'%}"></script>
 <script src="{% static 'Exam/assets/demo/chart-bar-demo.js'%}"></script>
 </body>
 </html>
