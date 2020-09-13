@@ -37,17 +37,20 @@ def convertToLabel(status):
 
 def results_pie(request):
     if isValidSession(request):
-        labels = []
-        data = []
-        # TODO fix labels set
+        labels = ["Pass", "Fail", "NoResults"]
+        data = [0, 0, 0]
         student_data = AccResultsSummary\
             .objects.values('test_result_status')\
             .annotate(count=Count('test_result_status'))\
             .filter(student_id=request.user.id)
 
         for record in student_data:
-            labels.append(convertToLabel(record['test_result_status']))
-            data.append(record['count'])
+            if record['test_result_status'].lower() == "pass":
+                data[0] += record['count']
+            elif record['test_result_status'].lower() == "fail":
+                data[1] += record['count']
+            else:
+                data[2] += record['count']
 
         jsonData = { 'labels': labels, 'data': data }
         return JsonResponse(jsonData)
