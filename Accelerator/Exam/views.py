@@ -39,6 +39,7 @@ def results_pie(request):
     if isValidSession(request):
         labels = []
         data = []
+        # TODO fix labels set
         student_data = AccResultsSummary\
             .objects.values('test_result_status')\
             .annotate(count=Count('test_result_status'))\
