@@ -2,6 +2,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.db.models import Count
 from django.core import serializers
 from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.views import logout_then_login
@@ -38,7 +39,6 @@ def results_pie(request):
     if isValidSession(request):
         labels = []
         data = []
-        from django.db.models import Count
         student_data = AccResultsSummary\
             .objects.values('test_result_status')\
             .annotate(count=Count('test_result_status'))\
@@ -48,7 +48,7 @@ def results_pie(request):
             labels.append(convertToLabel(record['test_result_status']))
             data.append(record['count'])
 
-        jsonData = { 'labels': labels, 'data': data}
+        jsonData = { 'labels': labels, 'data': data }
         return JsonResponse(jsonData)
     return render(request, 'Exam/errorpage.html')
 
