@@ -1,6 +1,9 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.db.models import Count
+from django.core import serializers
 from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.views import logout_then_login
 from django.views.generic import ListView
@@ -15,11 +18,43 @@ from . import utilities
 # Create your views here.
 
 
+def isValidSession(request):
+    return request.session.get('member', 'NA') != "NA" and request.COOKIES.get('id') == request.session.get('member', 'NA')
+
+
 def student_login(request):
-    if request.session.get('member', 'NA') != "NA" and \
-            request.COOKIES.get('id') == request.session.get('member', 'NA'):
+    if isValidSession(request):
         return redirect('exam-home')
     return render(request, 'Exam/login.html')
+
+
+def convertToLabel(status):
+    if status.lower() != "pass" and status.lower() != "fail":
+        return "No Results"
+    else:
+        return status.title()
+
+
+def results_pie(request):
+    if isValidSession(request):
+        labels = ["Pass", "Fail", "NoResults"]
+        data = [0, 0, 0]
+        student_data = AccResultsSummary\
+            .objects.values('test_result_status')\
+            .annotate(count=Count('test_result_status'))\
+            .filter(student_id=request.user.id)
+
+        for record in student_data:
+            if record['test_result_status'].lower() == "pass":
+                data[0] += record['count']
+            elif record['test_result_status'].lower() == "fail":
+                data[1] += record['count']
+            else:
+                data[2] += record['count']
+
+        jsonData = { 'labels': labels, 'data': data }
+        return JsonResponse(jsonData)
+    return render(request, 'Exam/errorpage.html')
 
 
 # @decorators.login_required(login_url='student-login')
@@ -40,8 +75,7 @@ def exam_home(request):
             # messages.error(request, "Password not match")
             return render(request, 'Exam/login.html')
     else:
-        if request.session.get('member', 'NA') != "NA" and \
-                request.COOKIES.get('id') == request.session.get('member', 'NA'):
+        if isValidSession(request):
             std_results = AccResultsSummary.objects.all().filter(student_id=request.user.id)
             return render(request, 'Exam/base.html', locals())
         return render(request, 'Exam/errorpage.html')
