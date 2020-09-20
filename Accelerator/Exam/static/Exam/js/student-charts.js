@@ -42,6 +42,64 @@ onReady = function () {
             cutoutPercentage: 50
         }
     });
+
+    $.ajax({
+        url: $("#myExamsResults").attr("data-url"),
+        success: function (result) {
+        new Chart($("#myExamsResults"), {
+            type: 'bar',
+            data: {
+                labels: result.subjects,
+                datasets: [
+                    {
+                        label: "Marks Obtained",
+                        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderWidth: 1,
+                        data: result.obtained_marks,
+                        xAxisID: "bar-x-axis1",
+                        stack: "background"
+                    },
+                    {
+                        label: "Total Marks",
+                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                        borderWidth: 1,
+                        data: result.total_marks,
+                        xAxisID: "bar-x-axis2"
+                    }
+                ]
+            },
+            options:{
+                scales: {
+                    xAxes: [
+                        {
+                            id: "bar-x-axis2",
+                            stacked: true,
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.5,
+                            gridLines: { display: false }
+                        },
+                        {
+                            display: false,
+                            stacked: true,
+                            id: "bar-x-axis1",
+                            type: 'category',
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.5,
+                            gridLines: { offsetGridLines: false},
+                            offset: true
+                        }
+                    ],
+                    yAxes: [{
+                        id: "bar-y-axis1",
+                        stacked: false,
+                        ticks: { beginAtZero: true },
+                        gridLines:{ display: true },
+                        maxTicksLimit: 5
+                    }]
+                }
+            }
+        });
+    }});
 }
 
 $(document).ready(onReady);

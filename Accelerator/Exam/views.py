@@ -57,6 +57,26 @@ def results_pie(request):
     return render(request, 'Exam/errorpage.html')
 
 
+def results_bar(request):
+    if isValidSession(request):
+        subjects = []
+        marks_obtained = []
+        total_marks = []
+        student_data = AccResultsSummary\
+            .objects.filter(student_id=request.user.id)\
+            .values('testid', 'marks_obtained', 'total_marks')\
+            .order_by('-test_end_time')[:5]
+
+        for record in student_data:
+            subjects.append(record['testid'])
+            marks_obtained.append(record['marks_obtained'])
+            total_marks.append(record['total_marks'])
+
+        json_data = {'subjects': subjects, 'obtained_marks': marks_obtained, 'total_marks': total_marks }
+        return JsonResponse(json_data)
+    return render(request, 'Exam/errorpage.html')
+
+
 # @decorators.login_required(login_url='student-login')
 def exam_home(request):
     context = {'full_name': ''}

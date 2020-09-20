@@ -114,10 +114,10 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="card-body">Recent Exam Results (TODO)</div>
+                        <div class="card-body">Recent Exam Results</div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <canvas id="myBarChart" width="100%" height="47"></canvas>
+                                <canvas id="myExamsResults" data-url="{% url 'results-bar-chart' %}" width="100%" height="47"></canvas>
                             </div>
                         </div>
                     </div>
@@ -197,6 +197,5 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="{% static 'Exam/assets/demo/datatables-demo.js'%}"></script>
 <script src="{% static 'Exam/js/student-charts.js'%}"></script>
-<script src="{% static 'Exam/assets/demo/chart-bar-demo.js'%}"></script>
 </body>
 </html>
