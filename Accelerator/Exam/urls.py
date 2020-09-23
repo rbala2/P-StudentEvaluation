@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('ResultsPie', views.results_pie, name='results-pie-chart'),
+    path('ResultsBar', views.results_bar, name='results-bar-chart'),
     path('ExamHome', views.exam_home, name='exam-home'),
     path('StudentLogin/', views.student_login, name='student-login'),
     path('StudentLogout/', views.student_logout, name='student-logout'),
