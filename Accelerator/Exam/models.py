@@ -50,9 +50,28 @@ class AccTestQuestions(models.Model):
         db_table = "acc_test_questions"
 
 
+class AccResultsSummary(models.Model):
+    student_id = models.CharField(max_length=10, default=None)
+    testid = models.IntegerField(default=0)
+    test_desc = models.CharField(max_length=100, default=None)
+    session = models.CharField(max_length=200, primary_key=True)
+    test_start_time = models.DateTimeField(null=True, blank=True)
+    test_end_time = models.DateTimeField(null=True, blank=True)
+    test_result_status = models.CharField(max_length=20, default='NA')
+    marks_obtained = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    total_marks = models.IntegerField(default=0)
+    questions_attempted = models.IntegerField(default=0)
+    answered_correct = models.IntegerField(default=0)
+    answered_wrong = models.IntegerField(default=0)
+    total_questions = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'acc_results_summary'
+
+
 class AccResults(models.Model):
     login_id = models.CharField(max_length=30)
-    session_id = models.CharField(max_length=100)
+    session = models.ForeignKey(AccResultsSummary, on_delete=models.CASCADE,default=None)
     testid = models.ForeignKey(AccTests, on_delete=models.CASCADE)
     qno = models.IntegerField(default=-1)
     qtype = models.CharField(max_length=10)
@@ -82,20 +101,3 @@ class AccStudentTests(models.Model):
         db_table = 'acc_student_tests'
 
 
-class AccResultsSummary(models.Model):
-    student_id = models.CharField(max_length=10, default=None)
-    testid = models.IntegerField(default=0)
-    test_desc = models.CharField(max_length=100, default=None)
-    session_id = models.CharField(max_length=100)
-    test_start_time = models.DateTimeField(null=True, blank=True)
-    test_end_time = models.DateTimeField(null=True, blank=True)
-    test_result_status = models.CharField(max_length=20, default='NA')
-    marks_obtained = models.DecimalField(max_digits=8, decimal_places=2)
-    total_marks = models.IntegerField(default=0)
-    questions_attempted = models.IntegerField(default=0)
-    answered_correct = models.IntegerField(default=0)
-    answered_wrong = models.IntegerField(default=0)
-    total_questions = models.IntegerField(default=0)
-
-    class Meta:
-        db_table = 'acc_results_summary'

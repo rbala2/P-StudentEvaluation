@@ -4,7 +4,9 @@ from django.db import models
 
 
 class AccTestUploads(models.Model):
-    file = models.FileField(upload_to='uploads')
+    description = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='uploads/')
+    uploaded_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = "acc_test_bulk_uploads"

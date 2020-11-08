@@ -1,10 +1,15 @@
 {% extends 'Central/base.html' %}
 {% block content %}
-    <form action="" method="post"> {% csrf_token %}
-        <a> Upload questions </a>
+    <div align="center">
+    <H3> Upload Questions </H3>
+    </div>
+    <div>
+    <form action="" method="post" enctype="multipart/form-data">
         <br>
+        {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Save" />
+        <button type="submit">Upload</button>
     </form>
+    </div>
 {% endblock %}
 
