@@ -1,0 +1,22 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv("C:\\rbala2\\PersonalPrjs\\GeneSYS\\ProjectX\\App\\data\\USD-INR_Hist_Data.txt"
+                 ,delimiter="\t"
+                 ,names=['Date','Price']
+                 ,parse_dates=["Date"]
+                 ,index_col= ['Date']
+                 )
+print df.describe()
+df_current_month = df['2018-03']
+ax=df_current_month.plot(kind="line",y='Price')
+ax.set_ylim((df_current_month['Price'].min()-0.5,df_current_month['Price'].max()+0.5))
+ax.grid(True, linestyle='-.')
+ax.tick_params(labelcolor='r', labelsize='medium', width=3)
+ax.set_xlabel('Day of Month')
+ax.set_ylabel('USD Traded in INR')
+#plt.savefig("C:\\rbala2\\PersonalPrjs\\GeneSYS\\ProjectX\\App\\data\\day_graph.png")
+plt.show()
+
+
