@@ -33,6 +33,7 @@ def evaluate_exam(student_id, session_id, testid):
     sobj.session_id = session_id
     sobj.student_id = student_id
     sobj.testid = testid
+    sobj.test_desc = tobj.values()[0]['test_desc']
     sobj.marks_obtained = total_score
     sobj.total_marks = tobj.values()[0]['total_marks']
     sobj.total_questions = tobj.values()[0]['total_questions']

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'PortalHome.apps.PortalhomeConfig',
     'Exam.apps.ExamConfig',
-    'Content.apps.ContentConfig'
+    'Content.apps.ContentConfig',
+    'Central.apps.CentralConfig'
 ]
 
 MIDDLEWARE = [
