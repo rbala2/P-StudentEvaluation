@@ -9,6 +9,7 @@
     <meta name="author" content=""/>
     <title>CPE - Student Portal</title>
     <link href="{% static 'Exam/css/styles.css' %}" rel="stylesheet"/>
+    <link href="{% static 'Exam/css/postit.css' %}" rel="stylesheet"/>
     <link rel="shortcut icon" href="{% static 'Exam/assets/img/favicon.png' %}" type="image/x-icon">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
           crossorigin="anonymous"/>
@@ -98,11 +99,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
-                        <div class="card-body">Attendance (TODO)</div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <canvas id="myAttendance" width="100%" height="105" ></canvas>
-                            </div>
+                        <div class="card-body">Upcoming Exams</div>
+                        <div class="quote-container">
+                          <i class="pin"></i>
+                          <blockquote class="note yellow">
+                            {% for upc_exams in upcoming_exams %}
+                            <li><u></u><cite class="author">{{upc_exams.test_desc}}</cite></u></li>
+                            {% endfor %}
+                          </blockquote>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
@@ -122,19 +126,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bs-example">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">Exam Summary Results</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Schedule</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Time Table</a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="card-body">Exam Summary Results</div>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="table-responsive">

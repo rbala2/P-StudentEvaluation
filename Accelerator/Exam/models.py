@@ -53,7 +53,7 @@ class AccTestQuestions(models.Model):
 class AccResults(models.Model):
     login_id = models.CharField(max_length=30)
     session_id = models.CharField(max_length=100)
-    testid = models.IntegerField()
+    testid = models.ForeignKey(AccTests, on_delete=models.CASCADE)
     qno = models.IntegerField(default=-1)
     qtype = models.CharField(max_length=10)
     answer_desc = models.CharField(max_length=4000, default='NA')

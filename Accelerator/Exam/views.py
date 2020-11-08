@@ -88,6 +88,7 @@ def exam_home(request):
             request.session['member'] = usr_instance.username
             request.session['fullname'] = context['fullname']
             std_results = AccResultsSummary.objects.all().filter(student_id=request.user.id)
+            upcoming_exams = AccTests.objects.all()[:5]
             response = render(request, 'Exam/base.html', locals())
             response.set_cookie(key='id', value=usr_instance.username)
             return response
@@ -97,6 +98,7 @@ def exam_home(request):
     else:
         if isValidSession(request):
             std_results = AccResultsSummary.objects.all().filter(student_id=request.user.id)
+            upcoming_exams = AccTests.objects.all()[:5]
             return render(request, 'Exam/base.html', locals())
         return render(request, 'Exam/errorpage.html')
 
