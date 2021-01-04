@@ -145,6 +145,12 @@ def test_complete(request):
         del request.session["exam_start_time"]
         return redirect('exam-home')
 
+    summary_obj = AccResultsSummary()
+    summary_obj.session = request.POST['csrfmiddlewaretoken']
+    summary_obj.student_id = request.user.id
+    summary_obj.test_desc = 'N/A'
+    summary_obj.save()
+
     for ky,val in ctxt.items():
         if ky != 'csrfmiddlewaretoken':
             # obj.id = cnt
@@ -152,7 +158,7 @@ def test_complete(request):
             obj.student_id = request.user.id
             obj.login_id = request.session['member']
             obj.session_id = request.POST['csrfmiddlewaretoken']
-            obj.testid = request.COOKIES['test_id']
+            obj.testid = AccTests.objects.get(id=request.COOKIES['test_id'])
             obj.qno = int(ky)
             obj.qtype = 'OBJ'
             obj.answer_obj = val

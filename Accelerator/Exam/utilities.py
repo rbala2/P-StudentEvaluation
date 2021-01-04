@@ -3,7 +3,7 @@ from .models import AccResultsSummary, AccResults, AccQuestions , AccTests
 
 # helper functions for exam evaluation
 def evaluate_exam(student_id, session_id, testid):
-    sobj = AccResultsSummary()
+    sobj = AccResultsSummary.objects.get(session=session_id)
     robj = AccResults.objects.filter(session_id=session_id, student_id=student_id, testid=testid)
     tobj = AccTests.objects.filter(id=testid)
 
@@ -23,14 +23,14 @@ def evaluate_exam(student_id, session_id, testid):
     val = float(tobj.values()[0]['negative_marking'])
     if val > 0 :
         total_score = total_score - answered_wrong * val
-    sobj.pk = None
+    # sobj.pk = None
     sobj.test_start_time = rec['test_starttime']
     sobj.test_end_time = rec['test_endtime']
     sobj.test_result_status = 'NA'
     sobj.questions_attempted = questions_attempted
     sobj.answered_correct = answered_correct
     sobj.answered_wrong = answered_wrong
-    sobj.session_id = session_id
+    # sobj.session_id = session_id
     sobj.student_id = student_id
     sobj.testid = testid
     sobj.test_desc = tobj.values()[0]['test_desc']
